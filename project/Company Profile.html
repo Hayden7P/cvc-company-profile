@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Company Profile — Strategic Due Diligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="deck-stage.js"></script>
+<style>
+  :root {
+    --core: #FAF8F3;
+    --header: #D95A1F;
+    --header-ink: #FFF5ED;
+    --summary: #FCE7D4;
+    --summary-ink: #3B1C0A;
+    --ink: #1A1612;
+    --ink-soft: #55504A;
+    --ink-mute: #8C877E;
+    --line: rgba(26,22,18,0.14);
+    --line-soft: rgba(26,22,18,0.08);
+    --line-strong: rgba(26,22,18,0.26);
+    --accent: #D95A1F;
+    --danger: #B53F1A;
+    --pos: #2F6B3E;
+  }
+  html, body { margin: 0; padding: 0; background: #2a2a2a; color: var(--ink); font-family: "Inter Tight", system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+
+  deck-stage section.profile {
+    background: var(--core);
+    color: var(--ink);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    font-feature-settings: "ss01", "cv11";
+    letter-spacing: -0.005em;
+  }
+
+  /* ===== HEADER (orange masthead) ===== */
+  .ph {
+    background: var(--header);
+    color: var(--header-ink);
+    padding: 22px 56px 20px;
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 14px;
+    position: relative;
+  }
+  .ph::after {
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:4px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0 50%, var(--core) 50% 100%);
+  }
+  .ph-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .ph-brand { display: flex; align-items: center; gap: 18px; }
+  .ph-mark {
+    width: 60px; height: 60px;
+    border: 1.5px solid rgba(255,245,237,0.85);
+    display: grid; place-items: center;
+    font-size: 24px; font-weight: 600;
+    color: var(--header-ink);
+    background: rgba(255,255,255,0.06);
+    position: relative;
+  }
+  .ph-mark::after { content:""; position:absolute; inset:5px; border:1px solid rgba(255,255,255,0.22); }
+  .ph-name { display: flex; flex-direction: column; gap: 4px; }
+  .ph-name h1 {
+    margin: 0;
+    font-size: 42px; font-weight: 600; letter-spacing: -0.028em;
+    line-height: 1; color: var(--header-ink);
+  }
+  .ph-headline {
+    font-size: 15px; line-height: 1.4;
+    color: rgba(255,245,237,0.92);
+    font-weight: 400;
+    text-wrap: pretty;
+    max-width: 720px;
+  }
+
+  /* Header KPIs (top-right) */
+  .ph-kpis {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    align-items: stretch;
+    border: 1px solid rgba(255,255,255,0.32);
+  }
+  .ph-kpi {
+    padding: 8px 18px;
+    border-right: 1px solid rgba(255,255,255,0.22);
+    display: flex; flex-direction: column; gap: 2px;
+    min-width: 130px;
+  }
+  .ph-kpi:last-child { border-right: none; }
+  .ph-kpi .k {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,245,237,0.7); font-weight: 500;
+  }
+  .ph-kpi .v {
+    font-size: 24px; font-weight: 600; letter-spacing: -0.02em;
+    color: var(--header-ink); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .ph-kpi .v .unit { font-size: 13px; color: rgba(255,245,237,0.85); margin-left: 3px; font-weight: 500; }
+  .ph-kpi .delta {
+    font-size: 10px; color: rgba(255,245,237,0.85);
+    font-family: "JetBrains Mono", monospace; letter-spacing: 0.04em;
+  }
+
+  .ph-meta {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.22);
+    padding-top: 12px;
+  }
+  .ph-meta .cell {
+    padding-right: 16px;
+    border-right: 1px solid rgba(255,255,255,0.18);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .ph-meta .cell:last-child { border-right: none; }
+  .ph-meta .k {
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,245,237,0.65); font-weight: 500;
+  }
+  .ph-meta .v { font-size: 14px; color: var(--header-ink); font-weight: 500; }
+
+  /* ===== 2x2 GRID ===== */
+  .body {
+    padding: 16px 56px;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+    min-height: 0;
+    flex: 1;
+  }
+  .quad {
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 18px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .quad-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .quad-head .left { display: flex; align-items: center; gap: 14px; }
+  .quad-num {
+    width: 30px; height: 30px;
+    background: var(--accent);
+    color: #fff;
+    display: grid; place-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+  }
+  .quad-head h2 {
+    margin: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px; letter-spacing: 0.18em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--ink);
+  }
+  .quad-meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-mute);
+  }
+  .quad-body { display: flex; flex-direction: column; gap: 12px; flex: 1; min-height: 0; }
+
+  /* shared mini-label */
+  .mini {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-mute); font-weight: 500;
+    margin: 0 0 6px 0;
+  }
+
+  /* ===== Q1 — Company Overview ===== */
+  .value-prop {
+    font-size: 15px; line-height: 1.45; color: var(--ink);
+    font-weight: 500; letter-spacing: -0.01em; text-wrap: pretty;
+    border-left: 3px solid var(--accent);
+    padding: 2px 0 2px 12px;
+    margin: 0;
+  }
+  .value-prop b { color: var(--accent); font-weight: 600; }
+
+  .pain-genesis {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  .pg {
+    background: #FAF8F3;
+    border: 1px solid var(--line-soft);
+    padding: 10px 14px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .pg .label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--accent); font-weight: 500;
+  }
+  .pg .body-txt { font-size: 12.5px; line-height: 1.4; color: var(--ink-soft); }
+  .pg .body-txt b { color: var(--ink); font-weight: 600; }
+
+  .use-cases { display: flex; flex-direction: column; gap: 6px; }
+  .use-case {
+    display: grid; grid-template-columns: 30px 1fr;
+    gap: 12px; align-items: baseline;
+    font-size: 12.5px; line-height: 1.4;
+  }
+  .use-case .n {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; color: var(--accent); letter-spacing: 0.08em; padding-top: 2px; font-weight: 600;
+  }
+  .use-case .b { color: var(--ink-soft); }
+  .use-case .b b { color: var(--ink); font-weight: 600; }
+
+  /* ===== Q2 — Industry Positioning ===== */
+  .market-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--line);
+    background: #FAF8F3;
+  }
+  .market-row .m {
+    padding: 12px 14px;
+    border-right: 1px solid var(--line-soft);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .market-row .m:last-child { border-right: none; }
+  .market-row .m .k {
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute);
+  }
+  .market-row .m .v {
+    font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1;
+  }
+  .market-row .m .sub {
+    font-size: 10.5px; color: var(--ink-mute);
+    font-family: "JetBrains Mono", monospace; letter-spacing: 0.04em;
+  }
+
+  .compete-list { display: flex; flex-direction: column; gap: 0; }
+  .compete-list .row {
+    display: grid; grid-template-columns: 130px 1fr auto;
+    gap: 14px; padding: 7px 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: baseline; font-size: 12.5px;
+  }
+  .compete-list .row:last-child { border-bottom: none; }
+  .compete-list .co { color: var(--ink); font-weight: 600; }
+  .compete-list .desc { color: var(--ink-soft); line-height: 1.4; }
+  .compete-list .typ {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.1em;
+    color: var(--ink-mute); text-transform: uppercase; white-space: nowrap;
+  }
+  .compete-list .row.target .co { color: var(--accent); }
+  .compete-list .row.target .typ { color: var(--accent); font-weight: 600; }
+
+  .moat {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  }
+  .moat .m {
+    border: 1px solid var(--line);
+    background: #FAF8F3;
+    padding: 10px 12px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .moat .m .k {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.14em; color: var(--accent);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .moat .m .v { font-size: 12px; color: var(--ink-soft); line-height: 1.4; }
+  .moat .m .v b { color: var(--ink); font-weight: 600; }
+
+  /* ===== Q3 — Team ===== */
+  .leaders { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .leader {
+    border: 1px solid var(--line);
+    padding: 12px 14px;
+    background: #FAF8F3;
+    display: grid; grid-template-columns: 40px 1fr; gap: 12px;
+    align-items: center;
+  }
+  .leader .av {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #fff; border: 1px solid var(--line-strong);
+    display: grid; place-items: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em;
+  }
+  .leader .role {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 500;
+  }
+  .leader .nm { font-size: 14px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; line-height: 1.2; }
+  .leader .bg { font-size: 11px; color: var(--ink-mute); line-height: 1.3; margin-top: 2px; font-family: "JetBrains Mono", monospace; letter-spacing: 0.02em; }
+
+  .headcount-sentence {
+    font-size: 13.5px; line-height: 1.5; color: var(--ink-soft);
+    background: #FAF8F3; border: 1px solid var(--line-soft);
+    padding: 10px 14px; text-wrap: pretty;
+  }
+  .headcount-sentence b { color: var(--ink); font-weight: 600; }
+  .headcount-sentence .hl { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  .partners {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 6px 18px; font-size: 12px;
+  }
+  .partner {
+    display: grid; grid-template-columns: 1fr auto; gap: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+  .partner:nth-last-child(-n+2) { border-bottom: none; }
+  .partner .nm { color: var(--ink); font-weight: 500; }
+  .partner .typ {
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px;
+    color: var(--ink-mute); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+
+  /* ===== Q4 — Key Figures ===== */
+  .kpis-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line);
+    background: #FAF8F3;
+  }
+  .kpis-row .kpi {
+    padding: 10px 12px;
+    border-right: 1px solid var(--line-soft);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .kpis-row .kpi:last-child { border-right: none; }
+  .kpis-row .k {
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute);
+  }
+  .kpis-row .v {
+    font-size: 22px; font-weight: 600; letter-spacing: -0.02em;
+    color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .kpis-row .v .unit { font-size: 12px; color: var(--ink-soft); margin-left: 2px; font-weight: 500; }
+  .kpis-row .delta {
+    font-size: 10.5px; color: var(--accent);
+    font-family: "JetBrains Mono", monospace; letter-spacing: 0.04em;
+  }
+  .kpis-row .delta.pos { color: var(--pos); }
+  .kpis-row .delta.mute { color: var(--ink-mute); }
+
+  .equity-story {
+    font-size: 13.5px; line-height: 1.5; color: var(--ink);
+    font-weight: 500; letter-spacing: -0.005em; text-wrap: pretty;
+    border-left: 3px solid var(--accent);
+    padding: 2px 0 2px 12px;
+    margin: 0;
+  }
+  .equity-story b { color: var(--accent); font-weight: 600; }
+
+  .customers {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 6px 12px; font-size: 12px;
+  }
+  .customer {
+    display: grid; grid-template-columns: 1fr auto; gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+  .customer:nth-last-child(-n+3) { border-bottom: none; }
+  .customer .nm { color: var(--ink); font-weight: 500; }
+  .customer .seg {
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px;
+    color: var(--ink-mute); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* ===== FOOTER ===== */
+  .pf {
+    background: var(--summary);
+    padding: 10px 56px;
+    border-top: 1px solid rgba(217,90,31,0.25);
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    gap: 24px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: rgba(59,28,10,0.65); text-transform: uppercase;
+  }
+  .pf .mark { color: var(--summary-ink); font-weight: 600; }
+  .pf .lock {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--danger); font-weight: 600;
+    border: 1px solid rgba(181,63,26,0.25);
+    background: #FCE0D5; padding: 4px 12px; border-radius: 999px;
+  }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<section class="profile" data-label="01 Company Profile">
+
+  <!-- HEADER -->
+  <header class="ph">
+    <div class="ph-top">
+      <div class="ph-brand">
+        <div class="ph-mark">◆</div>
+        <div class="ph-name">
+          <h1>[TARGET COMPANY]</h1>
+          <span class="ph-headline">[One-line characterisation — what the target does, for whom, and the strategic relevance to Renault in a single sentence.]</span>
+        </div>
+      </div>
+      <div class="ph-kpis">
+        <div class="ph-kpi">
+          <span class="k">Revenue (LTM)</span>
+          <span class="v">$[XX]<span class="unit">M</span></span>
+          <span class="delta">▲ [XX]% YoY</span>
+        </div>
+        <div class="ph-kpi">
+          <span class="k">Growth</span>
+          <span class="v">[XX]<span class="unit">%</span></span>
+          <span class="delta">[XXX]% NRR</span>
+        </div>
+        <div class="ph-kpi">
+          <span class="k">EBITDA margin</span>
+          <span class="v">[XX]<span class="unit">%</span></span>
+          <span class="delta">[Break-even Q-YYYY]</span>
+        </div>
+      </div>
+    </div>
+    <div class="ph-meta">
+      <div class="cell"><span class="k">Sector</span><span class="v">[Category]</span></div>
+      <div class="cell"><span class="k">Sub-sector</span><span class="v">[Vertical]</span></div>
+      <div class="cell"><span class="k">HQ</span><span class="v">[City, Country]</span></div>
+      <div class="cell"><span class="k">Founded</span><span class="v">[20XX]</span></div>
+      <div class="cell"><span class="k">Status</span><span class="v">[Private · VC-backed]</span></div>
+      <div class="cell"><span class="k">Headcount</span><span class="v">[XXX] FTE</span></div>
+      <div class="cell"><span class="k">Website</span><span class="v">[target.com]</span></div>
+    </div>
+  </header>
+
+  <!-- 2x2 BODY -->
+  <div class="body">
+
+    <!-- Q1 · COMPANY OVERVIEW -->
+    <article class="quad">
+      <div class="quad-head">
+        <div class="left">
+          <div class="quad-num">01</div>
+          <h2>Company Overview</h2>
+        </div>
+        <span class="quad-meta">Value · pain · products · use cases</span>
+      </div>
+      <div class="quad-body">
+        <p class="value-prop">
+          [TARGET] helps <b>[customer segment]</b> [achieve outcome] by [core mechanism] — replacing [legacy approach] with [novel approach] that delivers [quantified benefit].
+        </p>
+
+        <div class="pain-genesis">
+          <div class="pg">
+            <span class="label">Pain points addressed</span>
+            <span class="body-txt">
+              <b>[Pain 1]</b> — [costly manual process]. <b>[Pain 2]</b> — [scaling friction].
+            </span>
+          </div>
+          <div class="pg">
+            <span class="label">Genesis</span>
+            <span class="body-txt">
+              Founded [20XX] by <b>[Founder]</b> after [origin insight]; first product shipped [20XX].
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <p class="mini">Core Products &amp; Services</p>
+          <div class="use-cases">
+            <div class="use-case"><span class="n">P1</span><span class="b"><b>[Product 1]</b> — [primary offering, customer outcome].</span></div>
+            <div class="use-case"><span class="n">P2</span><span class="b"><b>[Product 2]</b> — [secondary line, segment served].</span></div>
+          </div>
+        </div>
+
+        <div>
+          <p class="mini">Core Use Cases</p>
+          <div class="use-cases">
+            <div class="use-case"><span class="n">UC1</span><span class="b"><b>[Use case 1]</b> — [persona] uses [product] to [JTBD], replacing [incumbent].</span></div>
+            <div class="use-case"><span class="n">UC2</span><span class="b"><b>[Use case 2]</b> — [persona] runs [workflow] delivering [outcome].</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Q2 · INDUSTRY POSITIONING -->
+    <article class="quad">
+      <div class="quad-head">
+        <div class="left">
+          <div class="quad-num">02</div>
+          <h2>Industry Positioning</h2>
+        </div>
+        <span class="quad-meta">Market · landscape · moats</span>
+      </div>
+      <div class="quad-body">
+        <div class="market-row">
+          <div class="m"><span class="k">Market size</span><span class="v">$[XX]B</span><span class="sub">SAM · served segment</span></div>
+          <div class="m"><span class="k">Growth</span><span class="v">[XX]%</span><span class="sub">CAGR '24 → '29</span></div>
+        </div>
+
+        <div>
+          <p class="mini">Competitive Landscape</p>
+          <div class="compete-list">
+            <div class="row target">
+              <span class="co">[TARGET]</span>
+              <span class="desc">Vertical-native challenger — proprietary [tech] for [segment].</span>
+              <span class="typ">Challenger</span>
+            </div>
+            <div class="row">
+              <span class="co">[Comp A]</span>
+              <span class="desc">Legacy incumbent, broad horizontal suite — slower roadmap.</span>
+              <span class="typ">Incumbent</span>
+            </div>
+            <div class="row">
+              <span class="co">[Comp B]</span>
+              <span class="desc">VC-backed direct rival, US-centric, similar wedge.</span>
+              <span class="typ">Direct</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="mini">Differentiators &amp; Moats</p>
+          <div class="moat">
+            <div class="m">
+              <span class="k">Technology</span>
+              <span class="v"><b>[Proprietary tech]</b> — [data flywheel, IP, certifications].</span>
+            </div>
+            <div class="m">
+              <span class="k">Distribution</span>
+              <span class="v"><b>[Channel advantage]</b> — [exclusive partners, OEM contracts].</span>
+            </div>
+            <div class="m">
+              <span class="k">Lock-in</span>
+              <span class="v"><b>[Switching costs]</b> — [deep integrations, regulated workflows].</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Q3 · TEAM -->
+    <article class="quad">
+      <div class="quad-head">
+        <div class="left">
+          <div class="quad-num">03</div>
+          <h2>Team &amp; Leadership</h2>
+        </div>
+        <span class="quad-meta">Founders · headcount · partners</span>
+      </div>
+      <div class="quad-body">
+        <div>
+          <p class="mini">Founders</p>
+          <div class="leaders">
+            <div class="leader">
+              <div class="av">AA</div>
+              <div>
+                <div class="role">CEO · Co-founder</div>
+                <div class="nm">[Founder Name]</div>
+                <div class="bg">ex-[Company] · [Y] yrs sector</div>
+              </div>
+            </div>
+            <div class="leader">
+              <div class="av">BB</div>
+              <div>
+                <div class="role">CTO · Co-founder</div>
+                <div class="nm">[Co-founder Name]</div>
+                <div class="bg">ex-[Company] · [PhD / domain]</div>
+              </div>
+            </div>
+            <div class="leader">
+              <div class="av">CC</div>
+              <div>
+                <div class="role">COO · Co-founder</div>
+                <div class="nm">[Co-founder Name]</div>
+                <div class="bg">ex-[Company] · led [scale phase]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="headcount-sentence">
+          <b>[XXX] FTE total</b> across [N] offices, weighted to engineering and product (<span class="hl">[XX]%</span> Eng &amp; R&amp;D, <span class="hl">[XX]%</span> GTM, <span class="hl">[XX]%</span> Product, balance in Operations and G&amp;A); headcount grew <span class="hl">[X]×</span> over the past [Y] years.
+        </p>
+
+        <div>
+          <p class="mini">Investors &amp; Strategic Partners</p>
+          <div class="partners">
+            <div class="partner"><span class="nm">[Lead VC]</span><span class="typ">Lead investor</span></div>
+            <div class="partner"><span class="nm">[Series B Lead]</span><span class="typ">Growth investor</span></div>
+            <div class="partner"><span class="nm">[Strategic Partner]</span><span class="typ">Channel · OEM</span></div>
+            <div class="partner"><span class="nm">[Tech Partner]</span><span class="typ">Tech alliance</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Q4 · KEY FIGURES -->
+    <article class="quad">
+      <div class="quad-head">
+        <div class="left">
+          <div class="quad-num">04</div>
+          <h2>Key Figures</h2>
+        </div>
+        <span class="quad-meta">KPIs · strategic interest · customers</span>
+      </div>
+      <div class="quad-body">
+        <div class="kpis-row">
+          <div class="kpi">
+            <span class="k">ARR</span>
+            <span class="v">$[XX]<span class="unit">M</span></span>
+            <span class="delta pos">▲ [XX]% YoY</span>
+          </div>
+          <div class="kpi">
+            <span class="k">Net retention</span>
+            <span class="v">[XXX]<span class="unit">%</span></span>
+            <span class="delta pos">Best-in-class</span>
+          </div>
+          <div class="kpi">
+            <span class="k">Customers</span>
+            <span class="v">[XXX]</span>
+            <span class="delta mute">[Enterprise + SMB]</span>
+          </div>
+          <div class="kpi">
+            <span class="k">Cash runway</span>
+            <span class="v">[XX]<span class="unit">mo</span></span>
+            <span class="delta mute">$[XX]M raised to date</span>
+          </div>
+        </div>
+
+        <p class="equity-story">
+          <b>Strategic interest for Renault:</b> [TARGET]'s [tech / capability] directly addresses [Renault's priority — e.g. SDV roadmap, battery supply, EV charging, in-cabin AI], with potential for [JV / OEM integration / minority investment]; integration would accelerate Renault's [strategic objective] by [Y] years versus internal build.
+        </p>
+
+        <div>
+          <p class="mini">Key Customers · Marquee Logos</p>
+          <div class="customers">
+            <div class="customer"><span class="nm">[Customer 1]</span><span class="seg">Enterprise</span></div>
+            <div class="customer"><span class="nm">[Customer 2]</span><span class="seg">Enterprise</span></div>
+            <div class="customer"><span class="nm">[Customer 3]</span><span class="seg">Mid-market</span></div>
+            <div class="customer"><span class="nm">[Customer 4]</span><span class="seg">Enterprise</span></div>
+            <div class="customer"><span class="nm">[Customer 5]</span><span class="seg">Public sector</span></div>
+            <div class="customer"><span class="nm">[Customer 6]</span><span class="seg">Mid-market</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="pf">
+    <span class="lock">🔒 Internal Use Only</span>
+    <span><span class="mark">Alliance Ventures</span> · Strategic Partnership Due Diligence</span>
+    <span>Prepared [MON YYYY]</span>
+    <span>v1.0</span>
+  </footer>
+
+</section>
+</deck-stage>
+
+</body>
+</html>
