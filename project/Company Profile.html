@@ -760,10 +760,10 @@
   .quad {
     background: #fff;
     border: 1px solid var(--line);
-    padding: 18px 22px 20px;
+    padding: 14px 22px 14px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     min-height: 0;
     overflow: hidden;
     position: relative;
@@ -944,9 +944,9 @@
     background: #FAF8F3;
   }
   .kpis-row .kpi {
-    padding: 10px 12px;
+    padding: 7px 10px;
     border-right: 1px solid var(--line-soft);
-    display: flex; flex-direction: column; gap: 3px;
+    display: flex; flex-direction: column; gap: 2px;
   }
   .kpis-row .kpi:last-child { border-right: none; }
   .kpis-row .k {
@@ -980,7 +980,7 @@
   }
   .customer {
     display: grid; grid-template-columns: 1fr auto; gap: 8px;
-    padding: 5px 0;
+    padding: 3px 0;
     border-bottom: 1px solid var(--line-soft);
     align-items: baseline;
   }
@@ -996,10 +996,9 @@
     background: var(--summary);
     padding: 10px 56px;
     border-top: 1px solid rgba(217,90,31,0.25);
-    display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 24px;
     font-family: "JetBrains Mono", monospace;
     font-size: 10px; letter-spacing: 0.18em;
     color: rgba(59,28,10,0.65); text-transform: uppercase;
@@ -1252,9 +1251,7 @@
   <!-- FOOTER -->
   <footer class="pf">
     <span class="lock">🔒 Internal Use Only</span>
-    <span><span class="mark">Alliance Ventures</span> · Strategic Partnership Due Diligence</span>
-    <span>Prepared [MON YYYY]</span>
-    <span>v1.0</span>
+    <span class="mark">Alliance Ventures</span>
   </footer>
 
 </section>
