@@ -992,6 +992,48 @@
     color: var(--ink-mute); letter-spacing: 0.08em; text-transform: uppercase;
   }
 
+  /* ===== Funding history (Q3) ===== */
+  .funding-list { display: flex; flex-direction: column; }
+  .round {
+    display: grid; grid-template-columns: 68px 54px 44px 1fr;
+    gap: 10px; padding: 5px 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: baseline; font-size: 12px;
+  }
+  .round:last-child { border-bottom: none; }
+  .round .rnd {
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+  }
+  .round .amt { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .round .yr { color: var(--ink-mute); font-family: "JetBrains Mono", monospace; font-size: 10px; }
+  .round .lead { color: var(--ink-soft); }
+
+  /* ===== Deal terms (Q4) ===== */
+  .deal-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--line); background: #FAF8F3;
+  }
+  .deal-cell {
+    padding: 8px 12px; border-right: 1px solid var(--line-soft);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .deal-cell:last-child { border-right: none; }
+  .deal-cell .k {
+    font-family: "JetBrains Mono", monospace; font-size: 9.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute);
+  }
+  .deal-cell .v {
+    font-size: 18px; font-weight: 600; letter-spacing: -0.02em;
+    color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums;
+  }
+  .deal-cell .v .unit { font-size: 11px; color: var(--ink-soft); margin-left: 2px; font-weight: 500; }
+  .deal-cell .sub {
+    font-size: 10.5px; color: var(--ink-soft);
+    font-family: "JetBrains Mono", monospace; letter-spacing: 0.04em;
+  }
+
   /* ===== FOOTER ===== */
   .pf {
     background: var(--summary);
@@ -1189,10 +1231,13 @@
         </p>
 
         <div>
-          <p class="mini">Investors &amp; Strategic Partners</p>
-          <div class="partners">
-            <div class="partner"><span class="nm">[Lead VC]</span><span class="typ">Lead investor</span></div>
-            <div class="partner"><span class="nm">[Series B Lead]</span><span class="typ">Growth investor</span></div>
+          <p class="mini">Funding History &amp; Investors</p>
+          <div class="funding-list">
+            <div class="round"><span class="rnd">Seed</span><span class="amt">$[X]M</span><span class="yr">[20XX]</span><span class="lead">[Lead VC] — [thesis / strategic rationale]</span></div>
+            <div class="round"><span class="rnd">Series A</span><span class="amt">$[XX]M</span><span class="yr">[20XX]</span><span class="lead">[Lead VC] — [product-market fit milestone]</span></div>
+            <div class="round"><span class="rnd">Series B</span><span class="amt">$[XX]M</span><span class="yr">[20XX]</span><span class="lead">[Lead VC] — [growth / expansion phase]</span></div>
+          </div>
+          <div class="partners" style="margin-top:8px">
             <div class="partner"><span class="nm">[Strategic Partner]</span><span class="typ">Channel · OEM</span></div>
             <div class="partner"><span class="nm">[Tech Partner]</span><span class="typ">Tech alliance</span></div>
           </div>
@@ -1247,9 +1292,26 @@
           </div>
         </div>
 
-        <p class="equity-story">
-          <b>Strategic interest for Renault:</b> [TARGET]'s [tech / capability] directly addresses [Renault's priority — e.g. SDV roadmap, battery supply, EV charging, in-cabin AI], with potential for [JV / OEM integration / minority investment]; integration would accelerate Renault's [strategic objective] by [Y] years versus internal build.
-        </p>
+        <div>
+          <p class="mini">Future Round · Use of Funds · Return Profile</p>
+          <div class="deal-row">
+            <div class="deal-cell">
+              <span class="k">Future Round</span>
+              <span class="v">$[XX]<span class="unit">M</span></span>
+              <span class="sub">[Series X] · target [Q-YYYY]</span>
+            </div>
+            <div class="deal-cell">
+              <span class="k">Use of Funds</span>
+              <span class="v">[X]<span class="unit">%</span></span>
+              <span class="sub">[X]% Eng · [X]% Sales · [X]% Ops</span>
+            </div>
+            <div class="deal-cell">
+              <span class="k">Return Profile</span>
+              <span class="v">[X]<span class="unit">×</span></span>
+              <span class="sub">Entry $[XX]M post · IRR [XX]% target</span>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
 
