@@ -778,14 +778,14 @@
     font-size: 15px; letter-spacing: -0.01em;
     font-weight: 700; color: var(--ink); line-height: 1.1;
   }
-  .quad-body { display: flex; flex-direction: column; gap: 12px; flex: 1; min-height: 0; }
+  .quad-body { display: flex; flex-direction: column; gap: 6px; flex: 1; min-height: 0; }
 
   /* shared mini-label */
   .mini {
     font-family: "JetBrains Mono", monospace;
     font-size: 10px; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--ink-mute); font-weight: 500;
-    margin: 0 0 6px 0;
+    margin: 0 0 4px 0;
   }
 
   /* ===== Q1 — Company Overview ===== */
@@ -915,7 +915,7 @@
   .headcount-sentence {
     font-size: 13.5px; line-height: 1.5; color: var(--ink-soft);
     background: #FAF8F3; border: 1px solid var(--line-soft);
-    padding: 10px 14px; text-wrap: pretty;
+    padding: 6px 12px; text-wrap: pretty;
   }
   .headcount-sentence b { color: var(--ink); font-weight: 600; }
   .headcount-sentence .hl { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
@@ -939,7 +939,7 @@
 
   /* ===== Q4 — Key Figures ===== */
   .kpis-row {
-    display: grid; grid-template-columns: repeat(4, 1fr);
+    display: grid; grid-template-columns: repeat(5, 1fr);
     border: 1px solid var(--line);
     background: #FAF8F3;
   }
@@ -1146,6 +1146,14 @@
             </div>
           </div>
         </div>
+
+        <div>
+          <p class="mini">Go-to-Market</p>
+          <div class="use-cases">
+            <div class="use-case"><span class="n">CH1</span><span class="b"><b>[Channel 1]</b> — [direct / partner / OEM]; target [segment], avg. deal $[XX]K, [X]-month sales cycle.</span></div>
+            <div class="use-case"><span class="n">CH2</span><span class="b"><b>[Channel 2]</b> — [land-and-expand / PLG / channel]; [retention / upsell dynamic].</span></div>
+          </div>
+        </div>
       </div>
     </article>
 
@@ -1227,6 +1235,11 @@
             <span class="k">Cash Runway</span>
             <span class="v">[XX]<span class="unit">mo</span></span>
             <span class="delta mute">$[XX]M raised to date</span>
+          </div>
+          <div class="kpi">
+            <span class="k">Pipeline</span>
+            <span class="v">$[XX]<span class="unit">M</span></span>
+            <span class="delta mute">[XX] qualified opps</span>
           </div>
         </div>
 
