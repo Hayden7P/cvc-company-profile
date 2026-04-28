@@ -769,32 +769,14 @@
     position: relative;
   }
   .quad-head {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
     border-bottom: 2px solid var(--accent);
   }
-  .quad-num {
-    width: 28px; height: 28px;
-    background: var(--accent);
-    color: #fff;
-    display: grid; place-items: center;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
-    flex-shrink: 0; margin-top: 1px;
-  }
-  .quad-head-text { display: flex; flex-direction: column; gap: 3px; }
   .quad-head h2 {
     margin: 0;
     font-family: "Inter Tight", system-ui, sans-serif;
     font-size: 15px; letter-spacing: -0.01em;
     font-weight: 700; color: var(--ink); line-height: 1.1;
-  }
-  .quad-meta {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 9.5px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--ink-mute);
   }
   .quad-body { display: flex; flex-direction: column; gap: 12px; flex: 1; min-height: 0; }
 
@@ -984,13 +966,13 @@
   .kpis-row .delta.mute { color: var(--ink-mute); }
 
   .equity-story {
-    font-size: 13.5px; line-height: 1.5; color: var(--ink);
-    font-weight: 500; letter-spacing: -0.005em; text-wrap: pretty;
+    font-size: 11.5px; line-height: 1.4; color: var(--ink-soft);
+    font-weight: 400; letter-spacing: -0.003em; text-wrap: pretty;
     border-left: 3px solid var(--accent);
-    padding: 2px 0 2px 12px;
-    margin: 0;
+    padding: 4px 0 4px 10px;
+    margin: 0; background: #FAF8F3;
   }
-  .equity-story b { color: var(--accent); font-weight: 600; }
+  .equity-story b { color: var(--ink); font-weight: 600; }
 
   .customers {
     display: grid; grid-template-columns: repeat(3, 1fr);
@@ -1065,11 +1047,7 @@
     <!-- Q1 · COMPANY OVERVIEW -->
     <article class="quad">
       <div class="quad-head">
-        <div class="quad-num">01</div>
-        <div class="quad-head-text">
-          <h2>Company Overview</h2>
-          <span class="quad-meta">Value · pain · products · use cases</span>
-        </div>
+        <h2>Company Overview</h2>
       </div>
       <div class="quad-body">
         <p class="value-prop">
@@ -1100,6 +1078,13 @@
         </div>
 
         <div>
+          <p class="mini">Business Model</p>
+          <div class="use-cases">
+            <div class="use-case"><span class="n">BM</span><span class="b"><b>[Pricing model]</b> — [SaaS / usage-based / marketplace]; avg. contract $[XX]K; [expansion / retention dynamic].</span></div>
+          </div>
+        </div>
+
+        <div>
           <p class="mini">Core Use Cases</p>
           <div class="use-cases">
             <div class="use-case"><span class="n">UC1</span><span class="b"><b>[Use case 1]</b> — [persona] uses [product] to [JTBD], replacing [incumbent].</span></div>
@@ -1112,11 +1097,7 @@
     <!-- Q2 · INDUSTRY POSITIONING -->
     <article class="quad">
       <div class="quad-head">
-        <div class="quad-num">02</div>
-        <div class="quad-head-text">
-          <h2>Industry Positioning</h2>
-          <span class="quad-meta">Market · landscape · moats</span>
-        </div>
+        <h2>Industry Positioning</h2>
       </div>
       <div class="quad-body">
         <div class="market-row">
@@ -1170,11 +1151,7 @@
     <!-- Q3 · TEAM -->
     <article class="quad">
       <div class="quad-head">
-        <div class="quad-num">03</div>
-        <div class="quad-head-text">
-          <h2>Team &amp; Leadership</h2>
-          <span class="quad-meta">Founders · headcount · partners</span>
-        </div>
+        <h2>Team &amp; Leadership</h2>
       </div>
       <div class="quad-body">
         <div>
@@ -1226,11 +1203,7 @@
     <!-- Q4 · KEY FIGURES -->
     <article class="quad">
       <div class="quad-head">
-        <div class="quad-num">04</div>
-        <div class="quad-head-text">
-          <h2>Key Figures</h2>
-          <span class="quad-meta">KPIs · strategic interest · customers</span>
-        </div>
+        <h2>Key Figures</h2>
       </div>
       <div class="quad-body">
         <div class="kpis-row">
@@ -1245,9 +1218,9 @@
             <span class="delta pos">YoY · [XXX]% NRR</span>
           </div>
           <div class="kpi">
-            <span class="k">EBITDA Margin</span>
-            <span class="v">[XX]<span class="unit">%</span></span>
-            <span class="delta mute">[Break-even Q-YYYY]</span>
+            <span class="k">ARR</span>
+            <span class="v">$[XX]<span class="unit">M</span></span>
+            <span class="delta pos">▲ [XX]% YoY</span>
           </div>
           <div class="kpi">
             <span class="k">Cash Runway</span>
