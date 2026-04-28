@@ -661,10 +661,7 @@
   .ph {
     background: var(--header);
     color: var(--header-ink);
-    padding: 22px 56px 20px;
-    display: grid;
-    grid-template-rows: auto auto;
-    gap: 14px;
+    padding: 22px 56px;
     position: relative;
   }
   .ph::after {
@@ -674,7 +671,7 @@
   .ph-top {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 24px;
   }
   .ph-brand { display: flex; align-items: center; gap: 18px; }
@@ -733,12 +730,12 @@
 
   .ph-meta {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    border-top: 1px solid rgba(255,255,255,0.22);
-    padding-top: 12px;
+    grid-template-columns: repeat(7, auto);
+    border: 1px solid rgba(255,255,255,0.32);
+    flex-shrink: 0;
   }
   .ph-meta .cell {
-    padding-right: 16px;
+    padding: 8px 14px;
     border-right: 1px solid rgba(255,255,255,0.18);
     display: flex; flex-direction: column; gap: 4px;
   }
@@ -1048,32 +1045,15 @@
           <span class="ph-headline">[One-line characterisation — what the target does, for whom, and the strategic relevance to Renault in a single sentence.]</span>
         </div>
       </div>
-      <div class="ph-kpis">
-        <div class="ph-kpi">
-          <span class="k">Revenue (LTM)</span>
-          <span class="v">$[XX]<span class="unit">M</span></span>
-          <span class="delta">▲ [XX]% YoY</span>
-        </div>
-        <div class="ph-kpi">
-          <span class="k">Growth</span>
-          <span class="v">[XX]<span class="unit">%</span></span>
-          <span class="delta">[XXX]% NRR</span>
-        </div>
-        <div class="ph-kpi">
-          <span class="k">EBITDA margin</span>
-          <span class="v">[XX]<span class="unit">%</span></span>
-          <span class="delta">[Break-even Q-YYYY]</span>
-        </div>
+      <div class="ph-meta">
+        <div class="cell"><span class="k">Sector</span><span class="v">[Category]</span></div>
+        <div class="cell"><span class="k">Sub-sector</span><span class="v">[Vertical]</span></div>
+        <div class="cell"><span class="k">HQ</span><span class="v">[City, Country]</span></div>
+        <div class="cell"><span class="k">Founded</span><span class="v">[20XX]</span></div>
+        <div class="cell"><span class="k">Status</span><span class="v">[Private · VC-backed]</span></div>
+        <div class="cell"><span class="k">Headcount</span><span class="v">[XXX] FTE</span></div>
+        <div class="cell"><span class="k">Website</span><span class="v">[target.com]</span></div>
       </div>
-    </div>
-    <div class="ph-meta">
-      <div class="cell"><span class="k">Sector</span><span class="v">[Category]</span></div>
-      <div class="cell"><span class="k">Sub-sector</span><span class="v">[Vertical]</span></div>
-      <div class="cell"><span class="k">HQ</span><span class="v">[City, Country]</span></div>
-      <div class="cell"><span class="k">Founded</span><span class="v">[20XX]</span></div>
-      <div class="cell"><span class="k">Status</span><span class="v">[Private · VC-backed]</span></div>
-      <div class="cell"><span class="k">Headcount</span><span class="v">[XXX] FTE</span></div>
-      <div class="cell"><span class="k">Website</span><span class="v">[target.com]</span></div>
     </div>
   </header>
 
