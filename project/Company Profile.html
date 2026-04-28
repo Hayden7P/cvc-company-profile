@@ -51,9 +51,9 @@
     background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0 50%, var(--core) 50% 100%);
   }
   .ph-top {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: 24px;
   }
   .ph-brand { display: flex; align-items: center; gap: 18px; }
@@ -229,7 +229,7 @@
   /* ===== Q2 — Industry Positioning ===== */
   .market-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     border: 1px solid var(--line);
     background: #FAF8F3;
   }
@@ -517,8 +517,10 @@
       </div>
       <div class="quad-body">
         <div class="market-row">
-          <div class="m"><span class="k">Market size</span><span class="v">$[XX]B</span><span class="sub">SAM · served segment</span></div>
-          <div class="m"><span class="k">Growth</span><span class="v">[XX]%</span><span class="sub">CAGR '24 → '29</span></div>
+          <div class="m"><span class="k">TAM</span><span class="v">$[XXX]B</span><span class="sub">Total addressable market</span></div>
+          <div class="m"><span class="k">SAM</span><span class="v">$[XX]B</span><span class="sub">Serviceable segment</span></div>
+          <div class="m"><span class="k">SOM</span><span class="v">$[X]B</span><span class="sub">Obtainable by [YYYY]</span></div>
+          <div class="m"><span class="k">CAGR</span><span class="v">[XX]%</span><span class="sub">Growth '24 → '29</span></div>
         </div>
 
         <div>
@@ -530,14 +532,14 @@
               <span class="typ">Challenger</span>
             </div>
             <div class="row">
-              <span class="co">[Comp A]</span>
-              <span class="desc">Legacy incumbent, broad horizontal suite — slower roadmap.</span>
+              <span class="co">Legacy Incumbents</span>
+              <span class="desc">[Corp A], [Corp B] — broad horizontal platforms, slower roadmap, high switching costs.</span>
               <span class="typ">Incumbent</span>
             </div>
             <div class="row">
-              <span class="co">[Comp B]</span>
-              <span class="desc">VC-backed direct rival, US-centric, similar wedge.</span>
-              <span class="typ">Direct</span>
+              <span class="co">New Entrants</span>
+              <span class="desc">[Startup A], [Startup B] — VC-backed challengers, narrower wedge, limited at scale.</span>
+              <span class="typ">Disruptor</span>
             </div>
           </div>
         </div>
@@ -630,22 +632,22 @@
       <div class="quad-body">
         <div class="kpis-row">
           <div class="kpi">
-            <span class="k">ARR</span>
+            <span class="k">Revenue (LTM)</span>
             <span class="v">$[XX]<span class="unit">M</span></span>
             <span class="delta pos">▲ [XX]% YoY</span>
           </div>
           <div class="kpi">
-            <span class="k">Net retention</span>
-            <span class="v">[XXX]<span class="unit">%</span></span>
-            <span class="delta pos">Best-in-class</span>
+            <span class="k">Growth</span>
+            <span class="v">[XX]<span class="unit">%</span></span>
+            <span class="delta pos">YoY · [XXX]% NRR</span>
           </div>
           <div class="kpi">
-            <span class="k">Customers</span>
-            <span class="v">[XXX]</span>
-            <span class="delta mute">[Enterprise + SMB]</span>
+            <span class="k">EBITDA Margin</span>
+            <span class="v">[XX]<span class="unit">%</span></span>
+            <span class="delta mute">[Break-even Q-YYYY]</span>
           </div>
           <div class="kpi">
-            <span class="k">Cash runway</span>
+            <span class="k">Cash Runway</span>
             <span class="v">[XX]<span class="unit">mo</span></span>
             <span class="delta mute">$[XX]M raised to date</span>
           </div>
